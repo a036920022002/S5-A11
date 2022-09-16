@@ -1,0 +1,25 @@
+{
+  "name": "s5-a11",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a036920022002/S5-A11.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a036920022002/S5-A11/issues"
+  },
+  "homepage": "https://github.com/a036920022002/S5-A11#readme",
+  "dependencies": {
+    "express": "^4.16.1"
+  }
+}
