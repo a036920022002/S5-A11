@@ -21,7 +21,7 @@
   "homepage": "https://github.com/a036920022002/S5-A11#readme",
   "dependencies": {
     "dotenv": "^16.0.2",
-    "express": "^4.16.1",
+    "express": "^4.16.4",
     "mongoose": "^5.9.7"
   }
 }
