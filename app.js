@@ -21,8 +21,8 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   const name = req.body.name
   const host = req.get('host')
-
-  return originalURL.findOne({ originURL: req.body.name })
+  console.log(name)
+  return originalURL.findOne({ originURL: name })
     .then(originURL => {
       if (!originURL) {
         const shortURL = createshort
