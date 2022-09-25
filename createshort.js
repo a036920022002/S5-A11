@@ -1,5 +1,3 @@
-const { model } = require("mongoose")
-
 function createshort() {
   console.log("function success!!")
   const numbers = '1234567890'
