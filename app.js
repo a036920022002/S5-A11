@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   const name = req.body.name
   const host = req.get('host')
-  
+
   return originalURL.findOne({ originURL: req.body.name })
     .then(originURL => {
       if (!originURL) {
@@ -29,39 +29,38 @@ app.post('/', (req, res) => {
         return originalURL.create({
           originURL: `${name}`,
           shortURL: `${host}/${shortURL}`
-        }).then(() => res.render('index', { originalURL: name, shortURL: shortURL, host }))
+        }).then(() => res.render('index', { originalURL: name, shortURL: host + '/' + shortURL, host }))
           .catch(error => console.log('error!!'))
       }
       else {
         const shortURL = originURL.shortURL
         res.render('index', { originalURL: name, shortURL: shortURL })
-  
+
       }
     })
     .catch(error => console.log('no found'))
 })
 
-// app.get('/:shortURL', (req, res) => {
-//   const shortURL = req.params
-//   console.log('req.params', req.params)
-//   console.log('req.params.name', req.params.shortURL)
-// })
-
 app.get('/:shortURL', (req, res) => {
-  const host = req.get('host')
-  console.log('host', host)
   const shortURL = req.params.shortURL
-  console.log('shortURL', shortURL)
-  const errorMsg = `${host}/${shortURL} is not exist`
+  const host = req.get('host')
+  //console.log('shortURL', shortURL)
+  //console.log('host', `${host}/${shortURL}`)
+  originalURL.findOne({ shortURL: `${host}/${shortURL}` })
+    .then(data => {
+      //console.log(data)
+      //console.log(data.originURL)
 
-
-  originalURL.findOne(req.params)
-    .then(data =>
-      data ? res.redirect(data.fullURL) : res.render('error', { errorMsg })
-    )
-    .catch(error => console.log(error))
+      if (!data) {
+        return res.render("error", {
+          errorMsg: "Can't found the URL",
+          errorURL: req.headers.host + "/" + shortURL,
+        })
+      }
+      res.redirect(data.originURL)
+    })
+    .catch(error => console.error(error))
 })
-
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
