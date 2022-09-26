@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const originalURL = require('./models/originalURL')
 const createshort = require('./createshort')
 
+
 const app = express()
 const port = 3000
 
@@ -21,11 +22,10 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   const name = req.body.name
   const host = req.get('host')
-  console.log(name)
-  return originalURL.findOne({ originURL: name })
+  const shortURL = createshort(6)
+  originalURL.findOne({ originURL: name })
     .then(originURL => {
       if (!originURL) {
-        const shortURL = createshort
         return originalURL.create({
           originURL: `${name}`,
           shortURL: `${host}/${shortURL}`

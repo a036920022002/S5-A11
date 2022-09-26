@@ -1,4 +1,4 @@
-function createshort() {
+function createshort(length) {
   console.log("function success!!")
   const numbers = '1234567890'
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
@@ -7,7 +7,7 @@ function createshort() {
   let shortURL = ''
   shortcollection = numbers.split('').concat(lowerCaseLetters.split('')).concat(upperCaseLetters.split(''))
 
-  for (let i = 0; i <= 5; i++) {
+  for (let i = 0; i <= length; i++) {
     shortURL += shortcollection[index(shortcollection)]
   }
 
@@ -19,4 +19,4 @@ function index(array) {
   return index
 }
 
-module.exports = createshort()
+module.exports = createshort
