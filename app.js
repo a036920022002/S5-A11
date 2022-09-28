@@ -29,7 +29,7 @@ app.post('/', (req, res) => {
         return originalURL
           .create({
             originURL: `${name}`,
-            shortURL: `${host}/${shortURL}`,
+            shortURL: `${shortURL}`,
           })
           .then(() =>
             res.render('index', {
@@ -53,7 +53,7 @@ app.get('/:shortURL', (req, res) => {
   //console.log('shortURL', shortURL)
   //console.log('host', `${host}/${shortURL}`)
   originalURL
-    .findOne({ shortURL: `${host}/${shortURL}` })
+    .findOne({ shortURL: `${shortURL}` })
     .then((data) => {
       //console.log(data)
       //console.log(data.originURL)
